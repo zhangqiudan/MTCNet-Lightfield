@@ -13,17 +13,9 @@ class ImageDataTest(data.Dataset):
     def __init__(self, test_mode=1, sal_mode='e'):
 
         if test_mode == 1:
-            if sal_mode == 'p':
-                self.image_root = '/data/qiudan/lightfield/MTCNet/dataset/'
-                self.image_source = '/data/qiudan/lightfield/MTCNet/dataset/test_lytro.lst'
-                self.test_fold = './results/'
-            elif sal_mode == 'd':
-                self.image_root = '/data/qiudan/lightfield/MTCNet/dataset/'
-                self.image_source = '/data/qiudan/lightfield/MTCNet/dataset/test.lst'
-                self.test_fold = './results/'
-            elif sal_mode == 'h':
-                self.image_root = '/data/qiudan/lightfield/dataset/DUTLF_V2/dutlf/'
-                self.image_source = '/data/qiudan/lightfield/dataset/DUTLF_V2/dutlf/testdutlf_mtcnet.lst'
+            if sal_mode == 'h':
+                self.image_root = './dataset/'
+                self.image_source = './test_lytro.lst'
                 self.test_fold = './results/'
 
         with open(self.image_source, 'r') as f:
@@ -68,13 +60,9 @@ def load_image(pah):
     if not os.path.exists(pah):
         print('File Not Exists:',pah)
     #img_name = pah[52:-4]
-    #img_name = pah[57:-4]
-    img_name = pah[54:-4] #dutlf
+    img_name = pah[57:-4]
     name = img_name + '.png'
-    #print('pah', pah)
-    #print('img_name', img_name)
-    #print('name', name)
-    #exit()
+    print('name', name)
     im = cv2.imread(pah)
     im = cv2.resize(im,(540,375)) ###
 
@@ -86,22 +74,17 @@ def load_image(pah):
 def load_views_90_test(pah):  
     if not os.path.exists(pah):
         print('File Not Exists:',pah)
-    #img_path = pah[:57]
-    #img_name = pah[57:65]
-    #img_path = pah[:55]
-    #img_name = pah[46:54]  
-    img_path = pah[:57] #dutlfv2
-    img_name = pah[57:61]
-    #print(pah)
-    #print(img_path)
-    #print(img_name)
+
+    img_path = pah[:55]
+    img_name = pah[46:54]    
+    print(img_path)
+    print(img_name)
     #exit()
     view_n = 7 
     slice_for_5x5 = int(0.5 * (7 - view_n))
 
     seq90d = list(range(14, 77, 9)[::-1][slice_for_5x5:9 - slice_for_5x5:])  # 90degree:  [76, 67, 58, 49, 40, 31, 22, 13, 4 ]
-    #print(seq90d)
-    #exit()
+
     im_s = cv2.imread(pah)
     im_s = cv2.resize(im_s,(540,375))
 
@@ -111,10 +94,9 @@ def load_views_90_test(pah):
         image_array = np.zeros((7,375,540,3))
 
     for i in range(7):
-        #img_all_path = img_path + img_name+ '_'+str(seq90d[i]) + '.jpg'
-        img_all_path = img_path  + img_name +'/'+ img_name+ '_'+str(seq90d[i]) + '.jpg'
-        #print(img_all_path) 
-        #exit()
+        img_all_path = img_path  + img_name+ '_'+str(seq90d[i]) + '.png'
+        print(img_all_path) 
+       
         im = cv2.imread(img_all_path)
         im = cv2.resize(im,(540,375))
         in_ = np.array(im, dtype=np.float32)
@@ -129,8 +111,8 @@ def load_views_0_test(pah):
     if not os.path.exists(pah):
         print('File Not Exists')
 
-    img_path = pah[:57] #dutlfv2
-    img_name = pah[57:61]
+    img_path = pah[:55]
+    img_name = pah[46:54]
 
     view_n = 7 
     slice_for_5x5 = int(0.5 * (7 - view_n))
@@ -145,7 +127,7 @@ def load_views_0_test(pah):
         image_array = np.zeros((7,375,540,3))
 
     for i in range(7):
-        img_all_path = img_path  + img_name +'/'+ img_name+ '_'+str(seq0d[i]) + '.jpg'
+        img_all_path = img_path  + img_name+ '_'+str(seq0d[i]) + '.png'
         im = cv2.imread(img_all_path)
         im = cv2.resize(im,(540,375))
         in_ = np.array(im, dtype=np.float32)
@@ -158,8 +140,8 @@ def load_views_0_test(pah):
 def load_views_45_test(pah):
     if not os.path.exists(pah):
         print('File Not Exists')
-    img_path = pah[:57] #dutlfv2
-    img_name = pah[57:61] 
+    img_path = pah[:55]
+    img_name = pah[46:54] 
     view_n = 7 
     slice_for_5x5 = int(0.5 * (7 - view_n))
     seq45d = list(range(17, 73, 8)[::-1][slice_for_5x5:9 - slice_for_5x5:])  
@@ -172,7 +154,7 @@ def load_views_45_test(pah):
         image_array = np.zeros((7,375,540,3))
 
     for i in range(7):
-        img_all_path = img_path  + img_name +'/'+ img_name+ '_'+str(seq45d[i]) + '.jpg'
+        img_all_path = img_path  + img_name+ '_'+str(seq45d[i]) + '.png'
         im = cv2.imread(img_all_path)
         im = cv2.resize(im,(540,375))
         in_ = np.array(im, dtype=np.float32)
@@ -185,8 +167,8 @@ def load_views_45_test(pah):
 def load_views_M45_test(pah):
     if not os.path.exists(pah):
         print('File Not Exists')
-    img_path = pah[:57] #dutlfv2
-    img_name = pah[57:61] 
+    img_path = pah[:55]
+    img_name = pah[46:54] 
 
     view_n = 7 
     slice_for_5x5 = int(0.5 * (7 - view_n))
@@ -201,7 +183,7 @@ def load_views_M45_test(pah):
         image_array = np.zeros((7,375,540,3))
 
     for i in range(7):
-        img_all_path = img_path  + img_name +'/'+ img_name+ '_'+str(seqM45d[i]) + '.jpg'
+        img_all_path = img_path  + img_name+ '_'+str(seqM45d[i]) + '.png'
 
         im = cv2.imread(img_all_path)
         im = cv2.resize(im,(540,375))
