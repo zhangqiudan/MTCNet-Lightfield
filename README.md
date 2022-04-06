@@ -2,7 +2,7 @@
 
 ## Training stage
 1. Prepare the training data and change the data path
-2. Download the [initial model](https://pan.baidu.com/s/1cTkx2dbbyeT1jLSC1Uejfw) - hqpw
+2. Download the [initial model](https://pan.baidu.com/s/1cTkx2dbbyeT1jLSC1Uejfw) - hqpw to the weights file
 3. Train the model: python3 run_train.py --mode train
 ## Testing stage
 1. Download the [pretrained model](https://pan.baidu.com/s/13RvcOWeR3NaAs5vY2tyRRg)- rrg7
