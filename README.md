@@ -16,17 +16,11 @@
 Our code is rewritten on the basis of this paper. Thanks a lot for the excellent code provided by the authors.
 
 @inproceedings{zhao2019EGNet,
-
  title={EGNet:Edge Guidance Network for Salient Object Detection},
- 
  author={Zhao, Jia-Xing and Liu, Jiang-Jiang and Fan, Deng-Ping and Cao, Yang and Yang, Jufeng and Cheng, Ming-Ming},
- 
  booktitle={The IEEE International Conference on Computer Vision (ICCV)},
- 
  month={Oct},
- 
  year={2019},
- 
 }
 
 
